@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- <h2 class="agecalc"></h2> -->
+    <div class="title">
+      <h1>Bat Ball Stump Game</h1>
+    </div>
+
+    <button class="btn btn1" onclick="
+      compChoice = getCompChoice();
+      finalResult = getResult('Bat', compChoice);
+      finalMsg('Bat', compChoice, finalResult)
+    ">Bat</button>
+    
+    <button class="btn btn2" onclick="
+      compChoice = getCompChoice();
+      finalResult = getResult('Ball', compChoice);
+      finalMsg('Ball', compChoice, finalResult)
+    ">Ball</button>
+
+    <button class="btn btn3" onclick="
+     compChoice = getCompChoice();
+     finalResult = getResult('Stump', compChoice);
+     finalMsg('Stump', compChoice, finalResult)
+    ">Stump</button>
+
+    <button class="btn btn4" onclick="
+    localStorage.clear()
+    resetScore();
+    ">Reset</button>    
+
+    <h2 id="usermove"></h2>
+    <h2 id="computermove"></h2>
+    <h2 id="result"></h2>
+    <h2 id="score"></h2>
+
+    <script>
+
+      let scoreStr = localStorage.getItem('Score');
+      let score;
+      resetScore(scoreStr);
+
+      function resetScore(scoreStr){
+        score = scoreStr ? JSON.parse(scoreStr) : {
+          Won: 0,
+          Lost: 0,
+          Tie: 0,
+       }
+
+       score.displayScore = function(){
+            return ` Win: ${score.Won}, Lost: ${score.Lost}, Tie: ${score.Tie}`;
+       }
+
+       finalMsg();
+       
+      }
+
+
+
+       function getCompChoice(){
+          let a = Math.random() * 3;
+          if(a >0 && a<=1){
+            return 'Bat'
+          } else if (a>1 && a<=2){
+            return 'Ball'
+          } else {
+            return 'Stump'
+          }
+       }
+
+       function getResult(useMove, compMove){
+          if(useMove === 'Bat'){
+            if (useMove === compMove){
+              score.Tie++;
+              return `It's Tie`
+            } else if (compMove === 'Ball'){
+              score.Won++;
+              return `You Won`
+            } else {
+              score.Lost++;
+              return `Computer Won`
+            }
+          } else if (useMove === 'Ball') {
+            if (useMove === compMove){
+              score.Tie++;
+              return `It's Tie`
+            } else if (compMove === 'Bat'){
+              score.Lost++;
+              return `Computer Won`
+            } else {
+              score.Won++;
+              return `You Won`
+            }
+          } else {
+            if (useMove === compMove){
+              score.Tie++;
+              return `It's Tie`
+            } else if (compMove === 'Ball'){
+              score.Lost++;
+              return `Computer Won`
+            } else {
+              score.Won++;
+              return `You Won`
+            }
+          }
+       }
+
+       function finalMsg(useMove, compMove, result){
+          localStorage.setItem('Score', JSON.stringify(score));
+          document.querySelector("#usermove").innerText = 
+            useMove !== undefined ? `You choosen ${useMove}` : "";
+          document.querySelector("#computermove").innerText = 
+            compMove !== undefined ? `Computer choosen ${compMove}` : "";
+          document.querySelector("#result").innerText = 
+            result !== undefined ? result : "";
+          document.querySelector("#score").innerText = score.displayScore();
+
+       }
+      
+
+    </script>
+
+    
+    <!-- <script src="assets/js/index.js"></script> -->
+</body>
+</html>

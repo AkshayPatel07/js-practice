@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+
+    <h2 id="greet"></h2>
+
+    <button id="click" onclick="displaynum();">0</button>
+
+    <script>
+        // let product = {
+        //     name: "Shirt",
+        //     size: 'M',
+        //     fit: 'slim fit',
+        // }
+
+        // console.log(product);
+        // console.log(typeof product)
+        // let a = JSON.stringify(product);
+        // console.log(a);
+        // console.log(typeof a);
+
+        // let b = JSON.parse(a);
+        // console.log(b);
+        // console.log(typeof b);
+
+        // console.log(a);
+        // console.log(typeof a);
+        let numberClick = 0;
+        function displaynum(){
+            
+            let btn = document.querySelector("#click");
+            numberClick ++;
+            btn.innerText = numberClick;
+        }
+
+        function msgDisplay(personName = "Dear"){
+
+            let cdate = new Date();
+            let hours = cdate.getHours();
+            let msgHead = document.querySelector("#greet")
+            
+            if (hours >=5 && hours < 12){
+                msgHead.innerText = `Good Morning ${personName}`;
+            } else if(hours >= 12 && hours < 20) {
+                msgHead.innerText = `Good Noon ${personName}`;
+            } else {
+                msgHead.innerText = `Good Night ${personName}`;
+            }
+        }
+
+        msgDisplay("Akshay");
+
+
+    </script>
+    
+</body>
+</html>

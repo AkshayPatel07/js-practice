@@ -1,0 +1,38 @@
+#add-bag{
+    background-color: greenyellow;
+    border-radius: 10px;
+    border: 0;
+    padding: 5px 10px;
+}
+.wishlist{
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+#calculator {
+    border: 1px solid gray;
+    padding: 10px;
+    max-width: 250px;
+}
+
+#calculator input[type="text"] {
+    padding: 8px;
+    border: 1px solid #999999;
+    border-radius: 5px;
+}
+
+.btn-grp {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.btn-grp button {
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .clickhere{
+            width: 100px;
+            height: 30px;
+            background-color: black;
+            border: 0;
+            color: #fff;
+            border-radius: 5px;
+        }
+        .sizeDouble{
+            width: 200px;
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="clickhere";>Click Here</button>
+    <script>
+        //1
+        // let multiply = function(num1, num2){
+        //     return num1*num2;
+        // }
+        // console.log(multiply(5,10));
+
+        //2
+        // let printData = () =>{
+        //     console.log("Hello");
+        // }
+        // let runTwice = newFun => {
+        //     newFun();
+        //     newFun();
+        // }
+        // runTwice(printData);
+
+        //3
+        // let sizeSelect = document.querySelector(".clickhere");
+        // sizeSelect.addEventListener("click", event =>{
+        //     setTimeout(doubleSize, 2000)
+        // })
+
+        // function doubleSize(){
+        //     let sizeSelect = document.querySelector(".clickhere");
+        //     sizeSelect.classList.add("sizeDouble");
+        // }
+
+        //4
+        let arr = [1,5,4];
+        // let sum = 0;
+        // arr.forEach(num => sum += num );
+
+        // console.log(sum);
+
+        let squares = arr.map(num => num*num);
+        console.log(squares);
+    </script>
+</body>
+</html>

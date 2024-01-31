@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+
+    <script>
+        // let product = {
+        //     company: 'Apple',
+        //     price: 200,
+        //     'item-Name': "Tshirt",
+        //     displayName: function(){
+        //         console.log(`The price of product ${product.price}`)
+        //     },
+
+        // }
+
+        // product.displayName();
+
+        let product = {
+            name: "Shirt",
+            size: 'M',
+            fit: 'slim fit',
+        }
+
+        let copyProduct = product;
+
+        copyProduct.name = 'Jeans';
+        console.log(copyProduct);
+        console.log(product);
+
+        copyProduct.size = 'L';
+        console.log(copyProduct);
+        console.log(product);
+
+        product.size = 'M';
+        console.log(copyProduct);
+        console.log(product)
+
+
+    </script>
+    
+</body>
+</html>
