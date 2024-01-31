@@ -2,54 +2,76 @@ let bagItems;
 onLoad();
 
 function onLoad(){
-  let bagItemStr = localStorage.getItem('bagItem');
-  bagItems = bagItemStr ? JSON.parse(bagItemStr) : [];
+  let bagStr = localStorage.getItem("bagIt12");
+  bagItems = bagStr ? JSON.parse(bagStr) : [];
   displayItemsOnHomePage();
   displayBagItems();
-  
 }
 
 function addToBag(itemId){
   bagItems.push(itemId);
-  localStorage.setItem('bagItem', JSON.stringify(bagItems));
+  localStorage.setItem("bagIt12", JSON.stringify(bagItems));
   displayBagItems();
-  
 }
 
 function displayBagItems(){
-  let bagItemCountElement = document.querySelector(".bagItemCount");
+  let bagItemsCount = document.querySelector(".bagItemCount");
   if(bagItems.length > 0){
-    bagItemCountElement.style.visibility = "visible";
-    bagItemCountElement.innerHTML = bagItems.length;
+    bagItemsCount.style.visibility = "visible";
+    bagItemsCount.innerHTML = bagItems.length;
   } else {
-    bagItemCountElement.style.visibility = "hidden";
+    bagItemsCount.style.visibility = "hidden";
   }
 }
 
 function displayItemsOnHomePage(){
   let itemsContainerElement = document.querySelector(".items-container");
 
-  if (!itemsContainerElement){
+  if(!itemsContainerElement){
     return
   }
 
-  let innerHtml = '';
-    items.forEach(item => {
-      innerHtml += `
-      <div class="item-container">
-        <img class="item-image" src="${item.image}" alt="item image">
-        <div class="rating">
-            ${item.rating.stars} ⭐ | ${item.rating.count}
-        </div>
-        <div class="company-name">${item.company}</div>
-        <div class="item-name">${item.item_name}</div>
-        <div class="price">
-            <span class="current-price">Rs ${item.current_price}</span>
-            <span class="original-price">Rs ${item.original_price}</span>
-            <span class="discount">(${item.discount_percentage}% OFF)</span>
-        </div>
-        <button class="btn-add-bag" onclick="addToBag(${item.id})">Add to Bag</button>
-      </div>`
-    });
-    itemsContainerElement.innerHTML = innerHtml;
+  let innerHtml = "";
+
+  items.forEach(singleItem => {
+    innerHtml +=`
+    <div class="item-container">
+      <img class="item-image" src="${singleItem.image}" alt="item image">
+      <div class="rating">
+          ${singleItem.rating.stars} ⭐ | ${singleItem.rating.count}
+      </div>
+      <div class="company-name">${singleItem.company}</div>
+      <div class="item-name">${singleItem.item_name}</div>
+      <div class="price">
+          <span class="current-price">Rs ${singleItem.current_price}</span>
+          <span class="original-price">Rs ${singleItem.original_price}</span>
+          <span class="discount">(${singleItem.discount_percentage}% OFF)</span>
+      </div>
+      <button class="btn-add-bag" onclick="addToBag(${singleItem.id})">Add to Bag</button>
+    </div>`
+  });
+
+  itemsContainerElement.innerHTML = innerHtml;
 }
+
+let eleElment = document.querySelector(".elm-comtainer");
+let fixEle = document.querySelector(".fix-image-wrap");
+
+eleElment.addEventListener("mouseenter", () => {
+  fixEle.style.display = "block";
+})
+
+eleElment.addEventListener("mouseleave", () => {
+  fixEle.style.display = "none";
+})
+
+let elms = document.querySelectorAll(".elm");
+
+elms.forEach(e => {
+  
+  e.addEventListener("mouseenter", () => {
+    var eleImg = e.getAttribute("data-src");
+    fixEle.style.backgroundImage = `url(${eleImg})`;
+  })
+})
+
